@@ -27,10 +27,7 @@ st.set_page_config(
 
 # ----------------------------- Styling ---------------------------------------
 st.markdown("""
-st.markdown("""
 <style>
-/* ================= GLOBAL THEME ================= */
-
 :root {
     --ink: #172033;
     --muted: #64748b;
@@ -39,11 +36,7 @@ st.markdown("""
 }
 
 .stApp {
-    background: linear-gradient(
-        180deg,
-        #f7f9fc 0%,
-        #eef2f7 100%
-    );
+    background: linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%);
     color: #172033;
 }
 
@@ -52,8 +45,7 @@ st.markdown("""
     max-width: 1440px;
 }
 
-/* ================= SIDEBAR FIX ================= */
-
+/* Sidebar: light background with readable dark text */
 [data-testid="stSidebar"] {
     background-color: #f1f5f9 !important;
 }
@@ -70,33 +62,23 @@ st.markdown("""
     color: #172033 !important;
 }
 
-/* Sidebar input fields */
-
 [data-testid="stSidebar"] input {
     color: #172033 !important;
     background-color: #ffffff !important;
     -webkit-text-fill-color: #172033 !important;
 }
 
-/* Sidebar select boxes and other widgets */
-
 [data-testid="stSidebar"] [data-baseweb="select"] > div {
     background-color: #ffffff;
     color: #172033;
 }
 
-/* ================= HERO HEADER ================= */
-
+/* Main hero banner */
 .hero {
     padding: 1.35rem 1.6rem;
     border-radius: 18px;
     color: #ffffff !important;
-    background: linear-gradient(
-        120deg,
-        #172033 0%,
-        #263b5b 65%,
-        #d97706 150%
-    );
+    background: linear-gradient(120deg, #172033 0%, #263b5b 65%, #d97706 150%);
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
     margin-bottom: 1.2rem;
 }
@@ -113,8 +95,7 @@ st.markdown("""
     color: #e2e8f0 !important;
 }
 
-/* ================= CONTENT CARDS ================= */
-
+/* Content cards */
 .section-card {
     background: rgba(255, 255, 255, 0.96);
     border: 1px solid #e2e8f0;
@@ -134,8 +115,7 @@ st.markdown("""
     font-size: 0.88rem;
 }
 
-/* ================= STATUS PILLS ================= */
-
+/* Status pills */
 .pill {
     display: inline-block;
     padding: 0.28rem 0.7rem;
@@ -145,28 +125,12 @@ st.markdown("""
     margin: 0.15rem 0;
 }
 
-.pill-green {
-    color: #166534 !important;
-    background: #dcfce7;
-}
+.pill-green { color: #166534 !important; background: #dcfce7; }
+.pill-amber { color: #92400e !important; background: #fef3c7; }
+.pill-red { color: #991b1b !important; background: #fee2e2; }
+.pill-blue { color: #1e40af !important; background: #dbeafe; }
 
-.pill-amber {
-    color: #92400e !important;
-    background: #fef3c7;
-}
-
-.pill-red {
-    color: #991b1b !important;
-    background: #fee2e2;
-}
-
-.pill-blue {
-    color: #1e40af !important;
-    background: #dbeafe;
-}
-
-/* ================= METRIC CARDS ================= */
-
+/* Metric cards */
 div[data-testid="stMetric"] {
     background: #ffffff;
     border: 1px solid #e2e8f0;
@@ -181,32 +145,22 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     color: #172033 !important;
 }
 
-/* ================= TABS FIX ================= */
-
-.stTabs [data-baseweb="tab"] {
-    color: #334155 !important;
-}
-
+/* Tabs: make inactive labels visible */
+.stTabs [data-baseweb="tab"],
 .stTabs [data-baseweb="tab"] p {
     color: #334155 !important;
 }
 
-.stTabs [aria-selected="true"] {
+.stTabs [aria-selected="true"],
+.stTabs [aria-selected="true"] p {
     color: #dc2626 !important;
 }
 
-/* ================= WARNING / ALERT FIX ================= */
-
-[data-testid="stAlert"] {
-    border-radius: 12px;
-}
-
+/* Alerts and upload controls */
 [data-testid="stAlert"] p,
 [data-testid="stAlert"] li {
     color: #172033 !important;
 }
-
-/* ================= FILE UPLOADER FIX ================= */
 
 [data-testid="stFileUploader"] {
     background-color: #ffffff;
@@ -219,14 +173,11 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     color: #334155 !important;
 }
 
-/* ================= BUTTONS ================= */
-
+/* Buttons and separators */
 div.stButton > button {
     border-radius: 10px;
     font-weight: 650;
 }
-
-/* ================= GENERAL TEXT ================= */
 
 [data-testid="stCaptionContainer"] {
     color: #64748b;
@@ -237,6 +188,7 @@ hr {
 }
 </style>
 """, unsafe_allow_html=True)
+
 # ----------------------------- Helpers ---------------------------------------
 def demo_mode() -> bool:
     return not bool(st.session_state.get("gemini_api_key", "").strip()) or not GEMINI_AVAILABLE
