@@ -27,32 +27,216 @@ st.set_page_config(
 
 # ----------------------------- Styling ---------------------------------------
 st.markdown("""
+st.markdown("""
 <style>
-:root { --ink:#172033; --muted:#64748b; --accent:#f59e0b; --panel:#ffffff; }
-.stApp { background: linear-gradient(180deg,#f7f9fc 0%,#eef2f7 100%); color:var(--ink); }
-.block-container { padding-top: 1.5rem; max-width: 1440px; }
-.hero { padding: 1.35rem 1.6rem; border-radius: 18px; color: white;
-        background: linear-gradient(120deg,#172033 0%,#263b5b 65%,#d97706 150%);
-        box-shadow: 0 12px 30px rgba(15,23,42,.12); margin-bottom: 1.2rem; }
-.hero h1 { margin:0; font-size:2rem; letter-spacing:-.03em; }
-.hero p { margin:.45rem 0 0; color:#e2e8f0; }
-.section-card { background:rgba(255,255,255,.92); border:1px solid #e2e8f0;
-                border-radius:16px; padding:1rem 1.15rem; margin:.4rem 0 1rem; }
-.small-muted { color:#64748b; font-size:.88rem; }
-.pill { display:inline-block; padding:.28rem .7rem; border-radius:999px; font-weight:700;
-        font-size:.78rem; margin:.15rem 0; }
-.pill-green { color:#166534; background:#dcfce7; }
-.pill-amber { color:#92400e; background:#fef3c7; }
-.pill-red { color:#991b1b; background:#fee2e2; }
-.pill-blue { color:#1e40af; background:#dbeafe; }
-div[data-testid="stMetric"] { background:white; border:1px solid #e2e8f0; padding:.8rem;
-                              border-radius:14px; box-shadow:0 3px 10px rgba(15,23,42,.04); }
-div.stButton > button { border-radius:10px; font-weight:650; }
-[data-testid="stSidebar"] { background:#f1f5f9; }
-hr { border-color:#dbe3ee; }
+/* ================= GLOBAL THEME ================= */
+
+:root {
+    --ink: #172033;
+    --muted: #64748b;
+    --accent: #f59e0b;
+    --panel: #ffffff;
+}
+
+.stApp {
+    background: linear-gradient(
+        180deg,
+        #f7f9fc 0%,
+        #eef2f7 100%
+    );
+    color: #172033;
+}
+
+.block-container {
+    padding-top: 1.5rem;
+    max-width: 1440px;
+}
+
+/* ================= SIDEBAR FIX ================= */
+
+[data-testid="stSidebar"] {
+    background-color: #f1f5f9 !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h1,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h2,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] h3,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] li,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"],
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
+    color: #172033 !important;
+}
+
+/* Sidebar input fields */
+
+[data-testid="stSidebar"] input {
+    color: #172033 !important;
+    background-color: #ffffff !important;
+    -webkit-text-fill-color: #172033 !important;
+}
+
+/* Sidebar select boxes and other widgets */
+
+[data-testid="stSidebar"] [data-baseweb="select"] > div {
+    background-color: #ffffff;
+    color: #172033;
+}
+
+/* ================= HERO HEADER ================= */
+
+.hero {
+    padding: 1.35rem 1.6rem;
+    border-radius: 18px;
+    color: #ffffff !important;
+    background: linear-gradient(
+        120deg,
+        #172033 0%,
+        #263b5b 65%,
+        #d97706 150%
+    );
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+    margin-bottom: 1.2rem;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+    color: #ffffff !important;
+}
+
+.hero p {
+    margin: 0.45rem 0 0;
+    color: #e2e8f0 !important;
+}
+
+/* ================= CONTENT CARDS ================= */
+
+.section-card {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1rem 1.15rem;
+    margin: 0.4rem 0 1rem;
+    color: #172033;
+}
+
+.section-card h3,
+.section-card p {
+    color: #172033 !important;
+}
+
+.small-muted {
+    color: #64748b !important;
+    font-size: 0.88rem;
+}
+
+/* ================= STATUS PILLS ================= */
+
+.pill {
+    display: inline-block;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.78rem;
+    margin: 0.15rem 0;
+}
+
+.pill-green {
+    color: #166534 !important;
+    background: #dcfce7;
+}
+
+.pill-amber {
+    color: #92400e !important;
+    background: #fef3c7;
+}
+
+.pill-red {
+    color: #991b1b !important;
+    background: #fee2e2;
+}
+
+.pill-blue {
+    color: #1e40af !important;
+    background: #dbeafe;
+}
+
+/* ================= METRIC CARDS ================= */
+
+div[data-testid="stMetric"] {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 0.8rem;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
+}
+
+div[data-testid="stMetric"] label,
+div[data-testid="stMetric"] [data-testid="stMetricLabel"],
+div[data-testid="stMetric"] [data-testid="stMetricValue"] {
+    color: #172033 !important;
+}
+
+/* ================= TABS FIX ================= */
+
+.stTabs [data-baseweb="tab"] {
+    color: #334155 !important;
+}
+
+.stTabs [data-baseweb="tab"] p {
+    color: #334155 !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: #dc2626 !important;
+}
+
+/* ================= WARNING / ALERT FIX ================= */
+
+[data-testid="stAlert"] {
+    border-radius: 12px;
+}
+
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] li {
+    color: #172033 !important;
+}
+
+/* ================= FILE UPLOADER FIX ================= */
+
+[data-testid="stFileUploader"] {
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+[data-testid="stFileUploader"] label,
+[data-testid="stFileUploader"] section,
+[data-testid="stFileUploader"] small {
+    color: #334155 !important;
+}
+
+/* ================= BUTTONS ================= */
+
+div.stButton > button {
+    border-radius: 10px;
+    font-weight: 650;
+}
+
+/* ================= GENERAL TEXT ================= */
+
+[data-testid="stCaptionContainer"] {
+    color: #64748b;
+}
+
+hr {
+    border-color: #dbe3ee;
+}
 </style>
 """, unsafe_allow_html=True)
-
 # ----------------------------- Helpers ---------------------------------------
 def demo_mode() -> bool:
     return not bool(st.session_state.get("gemini_api_key", "").strip()) or not GEMINI_AVAILABLE
